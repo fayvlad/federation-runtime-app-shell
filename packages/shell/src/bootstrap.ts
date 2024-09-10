@@ -8,6 +8,7 @@ import type { MFE } from '../@mf-types/reactApp/compiled-types/MFE'
 const REMOTE_MFES = [
   { name: 'reactApp', entry: 'http://localhost:8001/mf-manifest.json' },
   { name: 'litApp', entry: 'http://localhost:8002/mf-manifest.json' },
+  { name: 'angularApp', entry: 'http://localhost:4201/mf-manifest.json' },
 ]
 
 // Create a new Federation Runtime Instance (Singleton)
@@ -20,8 +21,9 @@ init({
   // Load Remote MFEs over HTTPS
   const reactMFE = await loadRemote<{ MFE: MFE }>('reactApp/MFE');
   const litMFE = await loadRemote<{ MFE: MFE }>('litApp/MFE');
+  const angularMFE = await loadRemote('angularApp/Component');
 
-  if (!reactMFE || !litMFE) return;
+  if (!reactMFE || !litMFE || !angularMFE) return;
 
   const mfes: { MFE: MFE }[] = [reactMFE, litMFE];
 
@@ -30,6 +32,11 @@ init({
     const rootElement = prepareRoot(MFE.name);
     MFE.bootstrap(rootElement, { message: 'Hello from Shell!' });
   });
+
+  // Run Angular
+  const rootElement = document.createElement('app-root');
+  document.body.appendChild(rootElement);
+  angularMFE.bootstrap();
 })();
 
 // Create a Root Element for the Remote MFE
