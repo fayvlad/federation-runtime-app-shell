@@ -34,6 +34,7 @@ init({
   });
 
   // Run Angular
+  // const angularMFE = await loadRemote('angularApp/Component');
   const rootElement = document.createElement('app-root');
   document.body.appendChild(rootElement);
   angularMFE.bootstrap();

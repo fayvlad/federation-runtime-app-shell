@@ -29,6 +29,53 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "../../node_modules/@epd/pattern-library/src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "src/styles.less",
+              "../../node_modules/@epd/pattern-library/src/styles/epd-styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "outputHashing": "all",
+              "optimization": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "build-dev-local": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mfe5-dev-local",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
@@ -48,8 +95,7 @@
               "extractLicenses": false,
               "sourceMap": true
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
@@ -60,6 +106,10 @@
             "development": {
               "buildTarget": "mfe5:build:development",
               "port": 4201
+            },
+            "dev-local": {
+              "buildTarget": "mfe5:build-dev-local:development",
+              "port": 4202
             }
           },
           "defaultConfiguration": "development"

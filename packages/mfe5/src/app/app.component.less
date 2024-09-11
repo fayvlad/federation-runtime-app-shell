@@ -1,7 +1,14 @@
-.content {
+@import "@epd/pattern-library/src/styles/epd-styles.less";
+
+&:host,.angular-content {
   display: flex;
   line-height: 1.1;
   text-align: center;
   flex-direction: column;
-  justify-content: center;
+  padding: 20px;
+  background-color: #ededed;
+  .set-font-style('http://localhost:4201/assets/fonts');
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 10px;
 }

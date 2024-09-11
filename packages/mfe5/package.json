@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^18.1.0",
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
+    "@epd/pattern-library": "^0.1.15-alpha",
     "@module-federation/enhanced": "^0.6.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

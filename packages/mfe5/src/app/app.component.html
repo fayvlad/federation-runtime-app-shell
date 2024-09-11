@@ -1,5 +1,41 @@
-<div class="content">
-  <h1>{{title}} 🛵</h1>
-</div>
+<div class="angular-content">
+  <h1>{{ title }} 🛵</h1>
 
-<router-outlet />
+  <epd-button type="primary"></epd-button>
+
+  <epd-tag color="success">success</epd-tag>
+  <epd-tag suffixIcon="arrow-desc" [closeable]="true" color="error">
+    <epd-icon type="alert-circle"></epd-icon>
+    Alert
+  </epd-tag>
+
+  <epd-input class="test" type="text" placeholder="Small size" size="small"/>
+  <epd-input type="text" placeholder="Medium size" size="medium"/>
+  <epd-input type="text" placeholder="Large size" size="large"/>
+  <epd-input
+    type="text"
+    placeholder="Error input"
+    value="Some text"
+    [error]="true"
+  ></epd-input>
+
+  <div>
+    <span
+      epdTooltip
+      [epdTooltipTitle]="largeTooltipTemplate"
+    >
+      Tooltip will show on the left side
+    </span>
+  </div>
+
+  <ng-template #largeTooltipTemplate let-event>
+    <div class="tooltip-with-description">
+      <h3>Tooltip title</h3>
+      <p>
+        Tooltips are commonly used to provide additional details, explanations,
+        or instructions about the element they are associated with.
+      </p>
+    </div>
+  </ng-template>
+</div>
+<router-outlet/>
