@@ -20,10 +20,13 @@
             "customWebpackConfig": {
               "path": "./webpack.config.js"
             },
-            "outputPath": "dist/mfe5",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
+              "zone.js"
+            ],
+            "allowedCommonJsDependencies": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
@@ -55,47 +58,40 @@
           },
           "configurations": {
             "production": {
-              "outputHashing": "all"
+              "optimization": true,
+              "outputHashing": "all",
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
-              "outputHashing": "all",
-              "optimization": true
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "mfe": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mfe.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
-        },
-        "build-dev-local": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/mfe5-dev-local",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "less",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.less"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          }
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
@@ -103,13 +99,13 @@
             "production": {
               "buildTarget": "mfe5:build:production"
             },
+            "mfe": {
+              "buildTarget": "mfe5:build:mfe",
+              "port": 4201
+            },
             "development": {
               "buildTarget": "mfe5:build:development",
               "port": 4201
-            },
-            "dev-local": {
-              "buildTarget": "mfe5:build-dev-local:development",
-              "port": 4202
             }
           },
           "defaultConfiguration": "development"

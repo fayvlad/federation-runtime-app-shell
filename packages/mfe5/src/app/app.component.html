@@ -19,6 +19,14 @@
     [error]="true"
   ></epd-input>
 
+  <epd-input-group >
+    <epd-select [multiple]="true" [disabled]="false" placeholder="Select item..." >
+      <epd-option value="jack" label="Jack"></epd-option>
+      <epd-option value="lucy" label="Lucy"></epd-option>
+      <epd-option value="disabled" label="Disabled" [disabled]="true"></epd-option>
+    </epd-select>
+  </epd-input-group>
+
   <div>
     <span
       epdTooltip
