@@ -8,7 +8,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "ngChild",
       exposes: {
-        "./Component": path.resolve(__dirname, "./src/app/app.component.ts"),
+        "./ChildComponent": path.resolve(__dirname, "./src/app/app.component.ts"),
       },
       shareStrategy: {
         "zone.js": {
@@ -32,6 +32,11 @@ module.exports = {
           requiredVersion: "auto",
         },
       },
+      dts: {
+        generateTypes: {
+          compileInChildProcess: false,
+        },
+      }
     }),
   ],
 };

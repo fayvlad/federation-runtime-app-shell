@@ -32,6 +32,11 @@ module.exports = {
           requiredVersion: "auto",
         },
       },
+      dts: {
+        generateTypes: {
+          compileInChildProcess: false,
+        },
+      }
     }),
   ],
 };
